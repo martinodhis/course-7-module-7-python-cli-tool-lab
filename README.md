@@ -1,6 +1,22 @@
 
 # Module Lab: Building a Python Command-Line Interface Tool
 
+module-lab-python-cli-tool/
+│
+├── lib/
+│   ├── __init__.py
+│   ├── models.py
+│   └── cli_tool.py
+│
+├── testing/
+│   ├── __init__.py
+│   └── test_cli_tool.py
+│
+├── Pipfile
+├── Pipfile.lock
+├── pytest.ini
+└── .gitignore
+
 ## Learning Goals
 
 - Build modular and user-friendly command-line applications using `argparse`.
@@ -44,7 +60,7 @@ python --version
 Optionally, create and activate a virtual environment:
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # macOS/Linux
 venv\Scripts\activate   # Windows
 ```
@@ -55,7 +71,35 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+# 3. Install dependencies (pytest)
+pip install pytest
+# (Alternatively, if you have pipenv installed: pipenv install)
 ---
+
+# runing
+
+# Add a task for Alice
+python -m lib.cli_tool add-task Alice "Write unit tests"
+# Expected Output: 📌 Task 'Write unit tests' added to Alice.
+
+# Complete the task for Alice
+python -m lib.cli_tool complete-task Alice "Write unit tests"
+# Expected Output: ✅ Task 'Write unit tests' completed.
+
+# Test error handling: User not found
+python -m lib.cli_tool complete-task Bob "Write unit tests"
+# Expected Output: ❌ User not found.
+
+# Test error handling: Task not found
+python -m lib.cli_tool complete-task Alice "Nonexistent task"
+# Expected Output: ❌ Task not found.
+
+# Test help menu (no arguments provided)
+python -m lib.cli_tool
+# Expected Output: Displays the argparse help menu.
+
+# pytest
+pytest testing/test_cli_tool.py -v
 
 ## Tasks
 
